@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Your charity</title>
+</head>
+<body>
+
+<form id = "myForm" name="myForm" action="HomeServlet" method="post">
+<h2>You won Audi S5!!!</h2>
+<br/>
+<p>Please enter your name and email to transfer $1000 to charity</p>
+<br/>
+name : <input type="text" name="name"/>
+email : <input type="text" name="email"/>
+<br/>
+<input type="submit" value="Claim"/>
+</form>
+
+
+<script type="text/javascript">
+
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+function appendCookieValue() {
+    var valll = getCookie("CSRF_TOKEN");
+    if (valll != "") {
+
+    	var input = document.createElement("input");
+
+    	input.setAttribute("type", "hidden");
+
+    	input.setAttribute("name", "token");
+
+    	input.setAttribute("value", valll);
+
+    	//append to form element that you want .
+    	document.getElementById("myForm").appendChild(input);
+    }
+}
+
+appendCookieValue();
+
+
+</script>
+</body>
+</html>
